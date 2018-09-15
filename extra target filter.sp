@@ -6,14 +6,13 @@
 #include <sdktools>
 #include <sdkhooks>
 
-//--------------------//
 
 public Plugin myinfo = 
 {
 	name = "Some Additional Filters",
 	author = "Cruze",
 	description = "Adds new filters to commands:= @r,@rct,@rt,@admins,@!admins",
-	version = "1.0",
+	version = "1.1",
 	url = ""
 }
 
@@ -83,9 +82,9 @@ public bool TargetRandomT(const char[] pattern, Handle clients)
 }
 public bool Filter_Admins(char[] pattern, Handle clients)
 {
-	for(int i = 1; i <= MaxClients; i++)
+	for(int i = 1; i <= MaxClients; i++) if(IsClientInGame(i))
 	{
-		if(IsValidClient(i) && CheckCommandAccess(i, "sm_admin", ADMFLAG_GENERIC, true))
+		if(CheckCommandAccess(i, "sm_admin", ADMFLAG_GENERIC, true))
 		{
 			PushArrayCell(clients, i);
 		}
@@ -95,21 +94,12 @@ public bool Filter_Admins(char[] pattern, Handle clients)
 
 public bool Filter_NotAdmins(char[] pattern, Handle clients)
 {
-	for(int i = 1; i <= MaxClients; i++)
+	for(int i = 1; i <= MaxClients; i++) if(IsClientInGame(i))
 	{
-		if(IsValidClient(i) && !CheckCommandAccess(i, "sm_admin", ADMFLAG_GENERIC, true))
+		if(!CheckCommandAccess(i, "sm_admin", ADMFLAG_GENERIC, true))
 		{
 			PushArrayCell(clients, i);
 		}
-	}
-	return true;
-}
-
-bool IsValidClient(int client, bool bIncludeBots = false)
-{
-	if(!(1 <= client <= MaxClients) || !IsClientInGame(client) || (!IsFakeClient(client) && !bIncludeBots))
-	{
-		return false;
 	}
 	return true;
 }
