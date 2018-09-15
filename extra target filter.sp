@@ -84,7 +84,7 @@ public bool Filter_Admins(char[] pattern, Handle clients)
 {
 	for(int i = 1; i <= MaxClients; i++) if(IsClientInGame(i))
 	{
-		if(CheckCommandAccess(i, "sm_admin", ADMFLAG_GENERIC, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_ROOT, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_SLAY, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_KICK, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_BAN, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_CHANGEMAP, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_CHEATS, true)) //If you have better way to do it, lemme know through pull request!!
+		if(CheckCommandAccess(i, "sm_admin", ADMFLAG_GENERIC, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_ROOT, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_SLAY, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_KICK, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_BAN, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_CHANGEMAP, true) || CheckCommandAccess(i, "sm_admin", ADMFLAG_CHEATS, true)) //If you have better way to do it, lemme know through pull request!!(Test your version ingame first)
 		{
 			PushArrayCell(clients, i);
 		}
